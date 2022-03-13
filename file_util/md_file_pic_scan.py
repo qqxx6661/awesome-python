@@ -25,7 +25,7 @@ import re
 # 删除开关，请谨慎操作
 enable_delete = 0
 
-path = "/Users/yangzhendong/Desktop/note"
+path = "/Users/yangzhendong/Library/Mobile Documents/com~apple~CloudDocs/Typora/学习/数据结构算法/算法题题解/分类题解"
 file_names = os.listdir(path)
 md_list = []
 pic_list = []
@@ -51,7 +51,7 @@ for md_name in md_list:
         content = f.read()
         # 查找常规引用
         pic_info = re.findall(r'(?:!\[(.*?)\]\((.*?)\))', content)
-        print("本文图片信息：", pic_info)
+        print("本文图片信息：", pic_info.__len__(), pic_info)
         for info in pic_info:
             if info[1] in pic_list:
                 print("发现正确图片引用：", info[1])
@@ -59,7 +59,7 @@ for md_name in md_list:
 
         # 查找HTML引用
         pic_info_html = re.findall(r'src=\".*(?=\")\"', content)
-        print("本文HTML图片信息：", pic_info_html)
+        print("本文HTML图片信息：", pic_info_html.__len__(), pic_info_html)
         for info in pic_info_html:
             img_url = info.split("\"")[1]
             if img_url in pic_list:
@@ -67,7 +67,7 @@ for md_name in md_list:
                 pic_list.remove(img_url)
 
 print("--------------------------------------------------")
-print("未引用可删除图片列表：", pic_list)
+print("未引用可删除图片列表：", pic_list.__len__(), pic_list)
 print("--------------------------------------------------")
 
 if enable_delete:
